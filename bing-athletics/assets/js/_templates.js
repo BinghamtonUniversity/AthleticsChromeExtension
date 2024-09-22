@@ -9,39 +9,83 @@ main: `
             </form>
         </div>
 
-        <div id="sports_form"></div>
+        
 
-        <div class="row">
-            {{#scores}}
-                <div class="col-sm-1">
-                    {{date}}
-                    {{sport.title}}
-                    {{#opponent.image}}
-                        <img src="https://binghamtonbearcats.com/{{opponent.image}}" style="width:16px;">
-                    {{/opponent.image}} {{opponent.name}}
-                    {{#result}}
-                        {{#team_score}}
-                            {{team_score}} {{opponent_score}}
-                        {{/team_score}}
-                        {{#prescore}}
-                            {{prescore}}
-                        {{/prescore}}
-                    {{/result}}
-                </div>
-            {{/scores}}
-        </div>
+        <div class='flex-container'>
+        <!--<div id="sports_form"></div>-->
 
-        <div class="row">
-            {{#stream}}
-            <div class="col-sm-3">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        {{{data.content_title}}}
+        <div class="container my-carousel-container" style="margin: 30px auto;">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                
+
+                <!-- Wrapper for slides -->
+                <div class="my-carousel-container2">
+                    <div class="carousel-inner">
+                        {{#each score_chunks}}
+                        <div class="item {{#if isActive}}active{{/if}}">
+                            <div class="row score-row">
+                                {{#each scores}} 
+                                <div class="col-sm-3">
+                                    <div class="score-entry">
+                                        <span class="date">{{date}}</span>
+                                        
+                                        <!-- Sport Title and Team Score -->
+                                        <span class="teams">
+                                            <img src="assets/icons/icon16.png" style="width:16px;">
+                                            <strong>{{sport.title}}</strong>
+                                            {{#result}}{{#team_score}}
+                                            <strong>{{team_score}}</strong>
+                                            {{/team_score}}{{/result}}
+                                        </span>
+
+                                        <!-- Opponent Name and Opponent Score -->
+                                        <span class="teams">
+                                            <img src="https://binghamtonbearcats.com/{{opponent.image}}" style="width:16px;">
+                                            {{opponent.name}}
+                                            {{#result}}{{#team_score}}
+                                            <strong>{{opponent_score}}</strong>
+                                            {{/team_score}}{{/result}}
+                                        </span>
+                                    </div>
+                                </div>
+                                {{/each}}
+                            </div>
+                        </div>
+                        {{/each}}
                     </div>
                 </div>
+
+               
+                <!-- Controls -->
+                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                    <span class="fa fa-arrow-left" aria-hidden="true"></span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                    <span class="fa fa-arrow-right" aria-hidden="true"></span>
+                </a>
             </div>
-            {{/stream}}
         </div>
+        </div>
+
+        <!--Nested template for news-->
+        <div class="scrollable-wrapper">
+            <div class="scrollable-container">
+                <h3 class="news-header">More News</h3>
+                <div class="list-group">
+                    {{#stream}}
+                    <a href="{{data.content_url}}" target="_blank" class="list-group-item">
+                       <div class="row">
+                            <div class="col-xs-12">
+                                <img src="{{data.content_image_url}}" alt="{{{data.content_title}}}" class="img-responsive" style="max-width: 100%; height: auto;"/>
+                                <h4 class="list-group-item-heading">{{{data.content_title}}}</h4>
+                            </div>
+                        </div>
+                    </a>
+                    {{/stream}}
+                </div>
+            </div>
+        </div>
+        
     </div>
 `,
 };

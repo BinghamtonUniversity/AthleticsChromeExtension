@@ -17,4 +17,144 @@
 }
 #search-button:hover {
     background-color: #e8e8e8;
+
+}
+.flex-container {
+    display: flex;
+    justify-content: space-around; 
+    align-items: center; 
+    padding: 20px;
+}
+
+/* #sports_form {
+    display: flex;
+    justify-content: center;
+} */
+
+.my-carousel-container2 {
+    margin-top: 10px;  
+    margin-bottom: 2px;
+    text-align: left; 
+}
+
+.carousel-inner .row {
+    margin-left: 0;
+    margin-right: 0;
+    height: 100px; 
+    overflow: hidden;
+}
+
+
+.score-entry {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    padding: 3px;
+}
+
+.date {
+    font-size: 14px;
+    color: gray;
+    margin-bottom: 5px;
+}
+
+.teams {
+    display: flex;
+    align-items: left;
+    gap: 5px; 
+    margin-bottom: 4px;
+}
+
+.teams img {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+}
+
+
+.col-sm-3 {
+    padding: 2px;
+    display: flex;
+    justify-content: left; 
+    align-items: left;     
+}
+
+
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-100%);
+    width: 30px;
+    height: 50px;
+    background-color: rgb(0, 93, 64); 
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.carousel-control.left {
+    left: -50px;
+}
+
+.carousel-control.right {
+    right: -50px; 
+}
+
+.carousel-control .fa {
+    font-size: 12px; 
+    line-height: 50px; 
+}
+
+
+.scrollable-wrapper {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh; 
+    margin-top: -15vh;
+}
+
+.scrollable-container {
+    max-height: 500px; 
+    overflow-y: scroll;
+    padding-right: 30px;
+    padding-left: 30px;
+    width: 600px; 
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+.news-header {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.list-group-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: #fff;
+}
+
+
+.scrollable-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.scrollable-container::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 5px;
+}
+
+.scrollable-container::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
 }
