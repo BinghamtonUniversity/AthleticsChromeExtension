@@ -70,14 +70,14 @@ main: `
         <!--Nested template for news-->
         <div class="scrollable-wrapper">
             <div class="scrollable-container">
-                <h3 class="news-header">More News</h3>
+                <h3 class="news-header"><span><img src="assets/icons/icon48.png" alt="Icon" style="width: 40px; margin-right: 10px;"></span>More News</h3>
                 <div class="list-group">
                     {{#stream}}
                     <a href="{{data.content_url}}" target="_blank" class="list-group-item">
                        <div class="row">
                             <div class="col-xs-12">
                                 <img src="{{data.content_image_url}}" alt="{{{data.content_title}}}" class="img-responsive" style="max-width: 100%; height: auto;"/>
-                                <h4 class="list-group-item-heading">{{{data.content_title}}}</h4>
+                                <h4 class="list-group-item-heading" style="margin-top:10px;">{{{data.content_title}}}</h4>
                             </div>
                         </div>
                     </a>

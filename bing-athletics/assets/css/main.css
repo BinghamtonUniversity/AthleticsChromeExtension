@@ -73,10 +73,12 @@
 
 
 .col-sm-3 {
-    padding: 2px;
+    padding: 5px;
     display: flex;
     justify-content: left; 
-    align-items: left;     
+    align-items: left;
+    border-right: 1px solid lightgray; 
+    border-radius: 5px;     
 }
 
 
