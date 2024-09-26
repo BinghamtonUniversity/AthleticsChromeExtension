@@ -1,11 +1,11 @@
 window.templates = {
 main: `
-    <div style="margin:100px 20px 0px 20px;">
+    <div style="margin:40px 20px 0px 20px;">
         <div style="text-align:center;">
-            <img id="logo" src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" style="height:92px;width:272px;margin-bottom: 20px;" alt="Google Logo">
+            <img id="logo" src="assets/icons/Binghamton-Athletics.png" style="height:280px;width:700px;object-fit:cover;" alt="Google Logo">
             <form id="search-form" action="https://www.google.com/search" method="GET">
-                <input id="search-input" type="text" name="q" required><br>
-                <button id="search-button" type="submit">Google Search</button>
+                <input id="search-input" type="text" name="q" style="width: 600px; height: 40px; font-size: 18px;" required><br>
+                <button id="search-button" type="submit" style="margin-top:10px; height: 40px; font-size: 16px;">Google Search</button>
             </form>
         </div>
 
@@ -31,7 +31,7 @@ main: `
                                         
                                         <!-- Sport Title and Team Score -->
                                         <span class="teams">
-                                            <img src="assets/icons/icon16.png" style="width:16px;">
+                                            <img src="assets/icons/icon32.png" style="width:16px;">
                                             <strong>{{sport.title}}</strong>
                                             {{#result}}{{#team_score}}
                                             <strong>{{team_score}}</strong>
@@ -70,14 +70,18 @@ main: `
         <!--Nested template for news-->
         <div class="scrollable-wrapper">
             <div class="scrollable-container">
-                <h3 class="news-header"><span><img src="assets/icons/icon48.png" alt="Icon" style="width: 40px; margin-right: 10px;"></span>More News</h3>
+                <h3 class="news-header"><span><img src="assets/icons/bearcat.png" alt="Icon" style="width: 40px; margin-right: 10px;"></span>More News</h3>
                 <div class="list-group">
                     {{#stream}}
                     <a href="{{data.content_url}}" target="_blank" class="list-group-item">
-                       <div class="row">
-                            <div class="col-xs-12">
-                                <img src="{{data.content_image_url}}" alt="{{{data.content_title}}}" class="img-responsive" style="max-width: 100%; height: auto;"/>
-                                <h4 class="list-group-item-heading" style="margin-top:10px;">{{{data.content_title}}}</h4>
+                        <div class="row align-items-center fixed-row">
+                            <div class="col-sm-4">
+                                {{#data.content_image_url}}
+                                <img src="{{data.content_image_url}}" alt="{{{data.content_title}}}" class="img-responsive"/>
+                                {{/data.content_image_url}}
+                            </div>
+                            <div class="col-sm-8">
+                                <h4 class="list-group-item-heading">{{{data.content_title}}}</h4>
                             </div>
                         </div>
                     </a>
@@ -85,6 +89,8 @@ main: `
                 </div>
             </div>
         </div>
+
+
         
     </div>
 `,

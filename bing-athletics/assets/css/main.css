@@ -114,15 +114,14 @@
     justify-content: center; 
     align-items: center; 
     height: 100vh; 
-    margin-top: -15vh;
 }
 
 .scrollable-container {
-    max-height: 500px; 
+    max-height: 700px; 
     overflow-y: scroll;
     padding-right: 30px;
     padding-left: 30px;
-    width: 600px; 
+    width: 80%; 
     margin-bottom: 20px;
     border: 1px solid #ddd;
     background-color: #f9f9f9;
@@ -131,7 +130,7 @@
 
 .news-header {
     text-align: center;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bold;
     margin-bottom: 20px;
     color: #333;
@@ -140,11 +139,57 @@
 .list-group-item {
     display: flex;
     align-items: center;
-    padding: 15px;
+    padding: 5px;
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 10px;
     margin-bottom: 10px;
     background-color: #fff;
+}
+
+.fixed-row {
+    display: flex; 
+    align-items: center; 
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.fixed-row .col-sm-4 {
+    flex: 0 0 40%; 
+    max-width: 40%; 
+    height: 150px; 
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    overflow: hidden;
+}
+
+.fixed-row img {
+    width: 100%; 
+    height: auto; 
+    object-fit: contain; 
+}
+
+.fixed-row .col-sm-8 {
+    flex: 0 0 60%; 
+    max-width: 60%; 
+    padding-left: 15px; 
+    display: flex;
+    align-items: center; 
+}
+
+.fixed-row h4 {
+    font-size: 16px;
+    margin: 0; 
+}
+
+.prominent-news-image {
+    width: 100%; 
+    height: auto;
+}
+
+.list-group-item-heading {
+    font-size: 18px;
+    margin-bottom: 10px;
 }
 
 
