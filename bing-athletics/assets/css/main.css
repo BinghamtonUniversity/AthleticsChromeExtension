@@ -5,31 +5,48 @@
     border: 1px solid #dcdcdc;
     border-radius: 24px;
     font-size: 16px;
+    background-color: #ffffff;
+    color: #000; 
 }
+
+.dark-mode #search-input {
+    background-color: #333; 
+    border: 1px solid #555; 
+    color: #fff; 
+}
+
+/* Search Button */
 #search-button {
     margin-top: 10px;
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
-    background-color: #f8f9fa;
+    background-color: #f8f9fa; 
     cursor: pointer;
     font-size: 14px;
+    color: #000; 
 }
-#search-button:hover {
-    background-color: #e8e8e8;
 
+.dark-mode #search-button {
+    background-color: #444; 
+    color: #fff; 
 }
+
+#search-button:hover {
+    background-color: #e8e8e8; 
+}
+
+.dark-mode #search-button:hover {
+    background-color: #555; 
+}
+
+
 .flex-container {
     display: flex;
     justify-content: space-around; 
     align-items: center; 
     padding: 20px;
 }
-
-/* #sports_form {
-    display: flex;
-    justify-content: center;
-} */
 
 .my-carousel-container2 {
     margin-top: 10px;  
@@ -43,7 +60,6 @@
     height: 100px; 
     overflow: hidden;
 }
-
 
 .score-entry {
     display: flex;
@@ -71,7 +87,6 @@
     object-fit: contain;
 }
 
-
 .col-sm-3 {
     padding: 5px;
     display: flex;
@@ -79,6 +94,10 @@
     align-items: left;
     border-right: 1px solid lightgray; 
     border-radius: 5px;     
+}
+
+.dark-mode .col-sm-3 {
+    border-right: 1px solid #777; 
 }
 
 
@@ -108,24 +127,26 @@
     line-height: 50px; 
 }
 
-
-.scrollable-wrapper {
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
-    height: 100vh; 
+.dark-mode .carousel-control {
+    background-color: rgb(77, 179, 143); 
+    color: white; 
 }
 
-.scrollable-container {
-    max-height: 700px; 
-    overflow-y: scroll;
+/* News Container */
+.news-container {
     padding-right: 30px;
     padding-left: 30px;
     width: 80%; 
+    margin: 0 auto;
     margin-bottom: 20px;
-    border: 1px solid #ddd;
-    background-color: #f9f9f9;
+    border: 1px solid #ddd; 
+    background-color: #f9f9f9; 
     border-radius: 8px;
+}
+
+.dark-mode .news-container {
+    border: 1px solid #555; 
+    background-color: #222; 
 }
 
 .news-header {
@@ -133,24 +154,36 @@
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 20px;
-    color: #333;
+    color: #333; 
 }
 
-.list-group-item {
-    display: flex;
-    align-items: center;
-    padding: 5px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    background-color: #fff;
+.dark-mode .news-header {
+    color: #fff; 
+}
+
+
+.dark-mode .list-group-item {
+    border: 1px solid #555; 
+    background-color: #333; 
+    color: #fff; 
 }
 
 .fixed-row {
     display: flex; 
     align-items: center; 
-    padding: 5px;
-    margin-bottom: 5px;
+    padding: 5px; 
+    margin-bottom: 10px; 
+    background-color: #fff;
+    color: rgb(83, 80, 80); 
+    font-style: italic;
+    border: 1px solid #ddd; 
+    border-radius: 10px; 
+}
+
+.dark-mode .fixed-row {
+    background-color: #333; 
+    border: 1px solid #555; 
+    color: #fff; 
 }
 
 .fixed-row .col-sm-4 {
@@ -193,15 +226,53 @@
 }
 
 
-.scrollable-container::-webkit-scrollbar {
-    width: 6px;
+.switch {
+    cursor: pointer;
 }
 
-.scrollable-container::-webkit-scrollbar-thumb {
-    background-color: #888;
-    border-radius: 5px;
+.slider {
+    cursor: pointer;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+    position: relative; 
+    width: 40px; 
+    height: 23px;
 }
 
-.scrollable-container::-webkit-scrollbar-track {
-    background-color: #f1f1f1;
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 20px; 
+    width: 20px; 
+    left: 2px; 
+    bottom: 2px; 
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+  
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+/* Dark and Light Mode */
+.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.light-mode {
+    background-color: #ffffff;
+    color: #000000;
 }

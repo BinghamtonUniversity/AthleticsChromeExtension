@@ -55,5 +55,37 @@ app.callback(function() {
         app.data.stream = stream.stream;
         app.update();
     });
+
+    const toggleDarkMode = function() {
+        const bodyElement = document.body;
+        const toggleSwitch = document.getElementById('dark-mode-toggle');
+        
+        if (toggleSwitch.checked) {
+            bodyElement.classList.remove('light-mode');
+            bodyElement.classList.add('dark-mode');
+            localStorage.setItem('dark-mode', 'enabled'); 
+        } else {
+            bodyElement.classList.remove('dark-mode');
+            bodyElement.classList.add('light-mode');
+            localStorage.setItem('dark-mode', 'disabled'); 
+        }
+    };
+    
+    // Check local storage for dark mode preference
+    const storedPreference = localStorage.getItem('dark-mode');
+    const toggleSwitch = document.getElementById('dark-mode-toggle');
+    
+    if (storedPreference === 'enabled') {
+        document.body.classList.add('dark-mode');
+        toggleSwitch.checked = true; 
+    } else {
+        document.body.classList.add('light-mode'); // default to light mode
+    }
+    
+  
+    if (toggleSwitch) {
+        toggleSwitch.addEventListener('change', toggleDarkMode);
+    }
+
 });
 

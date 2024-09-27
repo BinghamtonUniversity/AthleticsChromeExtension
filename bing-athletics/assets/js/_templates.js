@@ -1,6 +1,15 @@
 window.templates = {
 main: `
+    
+
     <div style="margin:40px 20px 0px 20px;">
+       <div style="position: absolute; top: 20px; right: 20px; display: flex; align-items: center;">
+            <span style="font-size: 13px; margin-right: 10px;">Dark Mode</span>
+            <label class="switch">
+                <input type="checkbox" id="dark-mode-toggle">
+                <span class="slider round"></span>
+            </label>
+        </div>
         <div style="text-align:center;">
             <img id="logo" src="assets/icons/Binghamton-Athletics.png" style="height:280px;width:700px;object-fit:cover;" alt="Google Logo">
             <form id="search-form" action="https://www.google.com/search" method="GET">
@@ -68,16 +77,16 @@ main: `
         </div>
 
         <!--Nested template for news-->
-        <div class="scrollable-wrapper">
-            <div class="scrollable-container">
+        
+            <div class="news-container">
                 <h3 class="news-header"><span><img src="assets/icons/bearcat.png" alt="Icon" style="width: 40px; margin-right: 10px;"></span>More News</h3>
                 <div class="list-group">
                     {{#stream}}
-                    <a href="{{data.content_url}}" target="_blank" class="list-group-item">
+                    <a href="{{data.content_url}}" target="_blank">
                         <div class="row align-items-center fixed-row">
                             <div class="col-sm-4">
                                 {{#data.content_image_url}}
-                                <img src="{{data.content_image_url}}" alt="{{{data.content_title}}}" class="img-responsive"/>
+                                <img src="{{data.content_image_url}}" alt="{{{data.content_title}}}"/>
                                 {{/data.content_image_url}}
                             </div>
                             <div class="col-sm-8">
@@ -88,7 +97,7 @@ main: `
                     {{/stream}}
                 </div>
             </div>
-        </div>
+     
 
 
         
