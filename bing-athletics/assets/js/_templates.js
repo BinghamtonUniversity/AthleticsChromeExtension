@@ -2,8 +2,8 @@ window.templates = {
 main: `
     
 
-    <div style="margin:40px 20px 0px 20px;">
-       <div style="position: absolute; top: 20px; right: 20px; display: flex; align-items: center;">
+    <div style="margin:40px 20px 0px 20px;position:relative;">
+       <div style="position: absolute; top: 10px; right: 20px; display: flex; align-items: center;">
             <span style="font-size: 13px; margin-right: 10px;">Dark Mode</span>
             <label class="switch">
                 <input type="checkbox" id="dark-mode-toggle">
