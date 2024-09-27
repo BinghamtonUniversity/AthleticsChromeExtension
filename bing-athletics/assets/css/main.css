@@ -140,15 +140,9 @@
     width: 80%; 
     margin: 0 auto;
     margin-bottom: 20px;
-    border: 1px solid #ddd; 
-    background-color: #f9f9f9; 
-    border-radius: 8px;
+    height: auto;
 }
 
-.dark-mode .news-container {
-    border: 1px solid #555; 
-    background-color: #222; 
-}
 
 .news-header {
     text-align: center;
@@ -162,15 +156,9 @@
     color: #fff; 
 }
 
-
-.dark-mode .list-group-item {
-    border: 1px solid #555; 
-    background-color: #333; 
-    color: #fff; 
-}
-
 .fixed-row {
     display: flex; 
+    height: 180px;
     align-items: center; 
     padding: 5px; 
     margin-bottom: 10px; 
@@ -179,13 +167,25 @@
     font-style: italic;
     border: 1px solid #ddd; 
     border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    transition: box-shadow 0.3s ease; 
+}
+
+.fixed-row:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); 
 }
 
 .dark-mode .fixed-row {
     background-color: #333; 
     border: 1px solid #555; 
     color: #fff; 
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1); 
 }
+
+.dark-mode .fixed-row:hover {
+    box-shadow: 0 6px 12px rgba(255, 255, 255, 0.2); 
+}
+
 
 .fixed-row .col-sm-4 {
     flex: 0 0 40%; 
