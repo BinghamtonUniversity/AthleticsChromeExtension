@@ -33,23 +33,6 @@ app.callback(function() {
         return chunked;
     }
 
-    
-
-    app.get(app.data.baseurl+'/sports',function(sports) {
-        app.data.sports = sports.sports;
-        app.data.sports.unshift({sport:0,sportInfo:{sport_title:'All Sports'}});
-        app.update();
-
-        // app.form('sports_form','#sports_form').on('change',function(event) {
-        //     var form_data = event.form.get();
-        //     if (app.data.current_sport_id != form_data.sport_id) {
-        //         app.data.current_sport_id = form_data.sport_id;
-        //         get_scores();
-        //         app.data.score_chunks = chunkArray(app.data.scores,4);
-        //         app.update();
-        //     }
-        // })
-    });
 
     app.get(app.data.baseurl+'/stream',function(stream) {
         app.data.stream = stream.stream;
@@ -86,6 +69,6 @@ app.callback(function() {
     if (toggleSwitch) {
         toggleSwitch.addEventListener('change', toggleDarkMode);
     }
-
+    
 });
 

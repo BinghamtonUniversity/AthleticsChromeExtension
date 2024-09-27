@@ -13,7 +13,7 @@ main: `
         <div style="text-align:center;">
             <img id="logo" src="assets/icons/Binghamton-Athletics.png" style="height:280px;width:700px;object-fit:cover;" alt="Google Logo">
             <form id="search-form" action="https://www.google.com/search" method="GET">
-                <input id="search-input" type="text" name="q" style="width: 600px; height: 40px; font-size: 18px;" required><br>
+                <input id="search-input" type="text" name="q" style="width: 600px; height: 40px; font-size: 18px;" required autofocus><br>
                 <button id="search-button" type="submit" style="margin-top:10px; height: 40px; font-size: 16px;">Google Search</button>
             </form>
         </div>
@@ -104,3 +104,4 @@ main: `
     </div>
 `,
 };
+
