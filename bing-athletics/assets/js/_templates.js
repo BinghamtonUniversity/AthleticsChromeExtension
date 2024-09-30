@@ -38,8 +38,29 @@ main: `
                                 {{#each scores}} 
                                 <div class="col-sm-3">
                                     <div class="score-entry">
-                                        <span class="date">{{date}}</span>
-                                        
+                                        <div class="date-plus-container">          
+                                            <span class="date">{{date}}</span>
+                                            {{#media}}{{#video}}{{#stats}}
+                                            <div class="plus-button-container">
+                                                <button class="btn btn-success btn-xs">+</button>
+                                                <div class="dropdown-links" style="display:none;">
+                                                   <a href="{{video}}" target="_blank">Watch</a>
+                                                   <a href="{{stats}}" target="_blank">Stats</a>
+                                                </div>
+                                            </div>
+                                            {{/stats}}
+                                            {{else}}
+                                                {{#story}}{{#content_url}}
+                                                <div class="plus-button-container">
+                                                    <button class="btn btn-success btn-xs">+</button>
+                                                    <div class="dropdown-links" style="display:none;">
+                                                        <a href="{{content_url}}" target="_blank">Recap</a>
+                                                    </div>
+                                                </div>
+                                                {{/content_url}}{{/story}}
+                                            {{/video}}{{/media}}
+                                            
+                                        </div>
                                         <!-- Sport Title and Team Score -->
                                         <span class="teams">
                                             <img src="assets/icons/icon32.png" style="width:16px;">

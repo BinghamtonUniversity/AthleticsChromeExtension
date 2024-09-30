@@ -71,6 +71,22 @@ app.callback(function() {
     if (toggleSwitch) {
         toggleSwitch.addEventListener('change', toggleDarkMode);
     }
-    
+
+   
+    app.click('.plus-button-container button', function(event) {
+        const dropdownLinks = event.target.nextElementSibling;
+        if (dropdownLinks.style.display === 'none' || dropdownLinks.style.display === '') {
+            dropdownLinks.style.display = 'block';
+        } else {
+            dropdownLinks.style.display = 'none';
+        }
+    });
+    document.addEventListener('click', function(event) {
+        if (!event.target.closest('.plus-button-container')) {
+            document.querySelectorAll('.dropdown-links').forEach(link => {
+                link.style.display = 'none'; // Hide all dropdowns if click is outside of the plus-button
+            });
+        }
+    });
 });
 
