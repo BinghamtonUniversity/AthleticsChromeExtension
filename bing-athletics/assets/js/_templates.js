@@ -11,7 +11,9 @@ main: `
             </label>
         </div>
         <div style="text-align:center;">
-            <img id="logo" src="assets/icons/Binghamton-Athletics.png" style="height:280px;width:700px;object-fit:cover;" alt="Google Logo">
+            <a href="https://binghamtonbearcats.com/" target="_blank">
+                <img id="logo" src="assets/icons/Binghamton-Athletics.png" style="height:280px;width:700px;object-fit:cover;" alt="Binghamton Athletics Logo">
+            </a>
             <form id="search-form" action="https://www.google.com/search" method="GET">
                 <input id="search-input" type="text" name="q" style="width: 600px; height: 40px; font-size: 18px;" required autofocus><br>
                 <button id="search-button" type="submit" style="margin-top:10px; height: 40px; font-size: 16px;">Google Search</button>
@@ -77,30 +79,29 @@ main: `
         </div>
 
         <!--Nested template for news-->
-        
+        <div class="scrollable-wrapper">
+        <div class="scrollable-container">
             <div class="news-container">
                 <h3 class="news-header"><span><img src="assets/icons/bearcat.png" alt="Icon" style="width: 40px; margin-right: 10px;"></span>More News</h3>
                 <div class="list-group">
-                    {{#stream}}
-                    <a href="{{data.content_url}}" target="_blank">
+                    {{#stories}}
+                    <a href="{{content_url}}" target="_blank">
                         <div class="row align-items-center fixed-row">
                             <div class="col-sm-4">
-                                {{#data.content_image_url}}
-                                <img src="{{data.content_image_url}}" alt="{{{data.content_title}}}"/>
-                                {{/data.content_image_url}}
+                                {{#content_image_url}}
+                                <img src="{{content_image_url}}" alt="{{{content_title}}}"/>
+                                {{/content_image_url}}
                             </div>
                             <div class="col-sm-8">
-                                <h4 class="list-group-item-heading">{{{data.content_title}}}</h4>
+                                <h4 class="list-group-item-heading">{{{content_title}}}</h4>
                             </div>
                         </div>
                     </a>
-                    {{/stream}}
+                    {{/stories}}
                 </div>
-            </div>
-     
-
-
-        
+            </div>   
+        </div>
+        </div>
     </div>
 `,
 };
