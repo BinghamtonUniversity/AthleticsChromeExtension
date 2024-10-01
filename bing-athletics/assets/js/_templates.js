@@ -39,7 +39,7 @@ main: `
                                 <div class="col-sm-3">
                                     <div class="score-entry">
                                         <div class="date-plus-container">          
-                                            <span class="date">{{date}}</span>
+                                            <span class="date">{{date}}/{{location}}</span>
                                             {{#media}}{{#video}}{{#stats}}
                                             <div class="plus-button-container">
                                                 <button class="btn btn-success btn-xs">+</button>
@@ -99,31 +99,71 @@ main: `
         </div>
         </div>
 
-        <!--Nested template for news-->
-        <div class="scrollable-wrapper">
-        <div class="scrollable-container">
-            <div class="news-container">
-                <h3 class="news-header"><span><img src="assets/icons/bearcat.png" alt="Icon" style="width: 40px; margin-right: 10px;"></span>More News</h3>
-                <div class="list-group">
-                    {{#stories}}
-                    <a href="{{content_url}}" target="_blank">
-                        <div class="row align-items-center fixed-row">
-                            <div class="col-sm-4">
-                                {{#content_image_url}}
-                                <img src="{{content_image_url}}" alt="{{{content_title}}}"/>
-                                {{/content_image_url}}
-                            </div>
-                            <div class="col-sm-8">
-                                <h4 class="list-group-item-heading">{{{content_title}}}</h4>
-                            </div>
+        <!-- Wrapper containing the box with two scrollable columns -->
+        <div class="box-wrapper">
+            <div class="box-container">
+                
+                <!-- Left Column: News stories -->
+                <div class="col-sm-6">
+                    <div class="scrollable-container">
+                        <h3 class="news-header">
+                            <span>
+                                <img src="assets/icons/bearcat.png" alt="Icon" style="width: 40px; margin-right: 10px;">
+                            </span>More News
+                        </h3>
+                        <div class="list-group">
+                            {{#stories}}
+                            <a href="{{content_url}}" target="_blank">
+                                <div class="row align-items-center fixed-row">
+                                    <div class="col-sm-4">
+                                        {{#content_image_url}}
+                                        <img src="{{content_image_url}}" alt="{{{content_title}}}" />
+                                        {{/content_image_url}}
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <h4 class="list-group-item-heading">{{{content_title}}}</h4>
+                                    </div>
+                                </div>
+                            </a>
+                            {{/stories}}
                         </div>
-                    </a>
-                    {{/stories}}
+                    </div>
                 </div>
-            </div>   
+
+                <!-- Right Column: Stream -->
+                <div class="col-sm-6">
+                    <div class="scrollable-container">
+                        <h3 class="news-header">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="blue" class="bi bi-facebook" viewBox="0 0 16 16">
+                                    <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
+                            </svg>
+                            <span style="margin-left:5px;">@BinghamtonAthletics</span>
+                        </h3>
+                        <div class="list-group">
+                            {{#stream}}
+                            <a href="{{data.content_url}}" target="_blank">
+                                <div class="row align-items-center fixed-row">
+                                    <div class="col-sm-4">
+                                        {{#data.content_image_url}}
+                                        <img src="{{data.content_image_url}}" alt="{{{data.content_title}}}" />
+                                        {{/data.content_image_url}}
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <h4 class="list-group-item-heading">{{{data.content_title}}}</h4>
+                                    </div>
+                                </div>
+                            </a>
+                            {{/stream}}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
-        </div>
+
+
     </div>
+
 `,
 };
 

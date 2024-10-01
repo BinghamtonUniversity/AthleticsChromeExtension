@@ -202,24 +202,33 @@
     color: white; 
 }
 
-.scrollable-wrapper {
+.box-wrapper {
     display: flex;
-    justify-content: center; 
-    align-items: center; 
-    width: 80%;
-    margin: 0 auto;  
-    height: 500px; 
-    max-height: 500px;
-    min-height: 500px;
-    overflow: hidden;
+    justify-content: center;
+    width: 100%; 
+    margin-top: 30px;
 }
 
+.box-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 80%; 
+    max-width: 1200px; 
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+}
+
+/* Scrollable Containers */
 .scrollable-container {
-    height: 400px; 
-    max-height: 400px; 
-    min-height: 400px; 
-    width: 100%; 
-    overflow-y: scroll; 
+    height: 400px;
+    max-height: 400px;
+    min-height: 400px;
+    width: 100%;
+    overflow-y: scroll;
     padding-right: 20px;
     padding-left: 20px;
     margin-bottom: 20px;
@@ -228,10 +237,24 @@
     border-radius: 8px;
 }
 
-.dark-mode .scrollable-container {
-    background-color: #222; 
-    border: 1px solid #555; 
+.dark-mode .box-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 80%; 
+    max-width: 1200px; 
+    background-color: #333; 
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); 
+    border: 1px solid #444; 
 }
+
+.dark-mode .scrollable-container {
+    background-color: #222;
+    border: 1px solid #555;
+}
+
 
 /* News Container */
 .news-container {
@@ -246,7 +269,7 @@
     text-align: center;
     font-size: 20px;
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     color: #333; 
 }
 
@@ -256,7 +279,7 @@
 
 .fixed-row {
     display: flex; 
-    height: 150px;
+    height: 120px;
     align-items: center; 
     padding: 5px; 
     margin-bottom: 10px; 
@@ -304,13 +327,13 @@
 .fixed-row .col-sm-8 {
     flex: 0 0 80%; 
     max-width: 80%; 
-    padding-left: 15px; 
+    padding-left: 10px; 
     display: flex;
     align-items: center; 
 }
 
 .fixed-row h4 {
-    font-size: 16px;
+    font-size: 14px;
     margin: 0; 
 }
 
@@ -320,7 +343,7 @@
 }
 
 .list-group-item-heading {
-    font-size: 18px;
+    font-size: 14px;
     margin-bottom: 10px;
 }
 
