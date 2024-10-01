@@ -5,7 +5,6 @@ app.callback(function() {
         app.get(app.data.baseurl+'/scores?sport_id='+app.data.current_sport_id,function(scores) {
             app.data.scores = scores;
             app.data.stories = scores.map(score => score.story).filter(story => story && story.title);
-            // console.log(app.data.stories);
             app.data.score_chunks = chunkArray(app.data.scores,4);
             app.data.score_chunks = app.data.score_chunks.map((chunk, index) => {
                 return {
@@ -13,13 +12,15 @@ app.callback(function() {
                     isActive: index === 0,
                     scores: chunk.map(score => {
                         const date = new Date(score.date);
-                        const options = { month: 'short', day: 'numeric' };
-                        score.date = date.toLocaleDateString('en-US', options);
+                        const dateOptions = { month: 'short', day: 'numeric' };
+                        const timeOptions = { hour: 'numeric', minute: 'numeric', hour12: true };
+        
+                        score.date = date.toLocaleDateString('en-US', dateOptions);
+                        score.time = date.toLocaleTimeString('en-US', timeOptions).toLowerCase();
                         return score;
                     })
                 };
             });
-            // console.log(app.data.score_chunks);
             app.update();
         });
     }
@@ -81,6 +82,7 @@ app.callback(function() {
             dropdownLinks.style.display = 'none';
         }
     });
+
     document.addEventListener('click', function(event) {
         if (!event.target.closest('.plus-button-container')) {
             document.querySelectorAll('.dropdown-links').forEach(link => {
