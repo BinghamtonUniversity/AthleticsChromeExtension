@@ -4,7 +4,7 @@ app.callback(function() {
     var get_scores = function() {
         app.get(app.data.baseurl+'/scores?sport_id='+app.data.current_sport_id,function(scores) {
             app.data.scores = scores;
-            app.data.stories = scores.map(score => score.story).filter(story => story && story.title);
+            app.data.stories = scores.map(score => score.story).filter(story => story && story.title).reverse();
             app.data.score_chunks = chunkArray(app.data.scores,4);
             app.data.score_chunks = app.data.score_chunks.map((chunk, index) => {
                 return {
