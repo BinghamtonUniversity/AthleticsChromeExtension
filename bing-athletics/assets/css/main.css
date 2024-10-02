@@ -284,11 +284,23 @@
     font-weight: bold;
     margin-bottom: 30px;
     color: #333; 
+    position: sticky;
+    background-color: #f5f5f5;
+    top: 0;
+    z-index: 10;
+    padding: 10px 0;
+    border-radius: 8px;
+    left: 0;
+    right: 0;
+    margin-left: -20px;
+    margin-right: -20px;
 }
 
 .dark-mode .news-header {
     color: #fff; 
+    background-color: #222;
 }
+
 
 .fixed-row {
     display: flex; 

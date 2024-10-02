@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "name": "Binghamton Athletics New Tab",
+    "name": "Binghamton Athletics",
     "version": "1.0",
     "description": "Binghamton Athletics custom home page",
     "permissions": ["tabs"],
