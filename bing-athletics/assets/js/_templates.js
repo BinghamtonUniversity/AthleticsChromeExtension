@@ -4,6 +4,8 @@ main: `
 
     <div style="margin:40px 20px 0px 20px;position:relative;">
        <div style="position: absolute; top: 10px; right: 20px; display: flex; align-items: center;">
+            <a href="https://mail.google.com/mail/u/0/#inbox" target="_blank" class="gmail-link">Gmail</a>
+
             <span style="font-size: 13px; margin-right: 10px;">Dark Mode</span>
             <label class="switch">
                 <input type="checkbox" id="dark-mode-toggle">
@@ -96,8 +98,13 @@ main: `
                     <span class="fa fa-arrow-right" aria-hidden="true"></span>
                 </a>
             </div>
+            <div class='composite-calendar'>
+                <a href="https://binghamtonbearcats.com/calendar" target="_blank" class="calendar-link">See full calendar</a>
+            </div>
         </div>
         </div>
+
+        
 
         <!-- Wrapper containing the box with two scrollable columns -->
         <div class="box-wrapper">
@@ -108,7 +115,7 @@ main: `
                     <div class="scrollable-container">
                         <h3 class="news-header">
                             <span>
-                                <img src="assets/icons/bearcat.png" alt="Icon" style="width: 40px; margin-right: 10px;">
+                                <img src="assets/icons/bearcat.ico" alt="Icon" style="width: 40px; margin-right: 10px;">
                             </span>More News
                         </h3>
                         <div class="list-group">
@@ -121,7 +128,12 @@ main: `
                                         {{/content_image_url}}
                                     </div>
                                     <div class="col-sm-8">
-                                        <h4 class="list-group-item-heading">{{{content_title}}}</h4>
+                                        <div class="content-wrapper">
+                                            <h4 class="list-group-item-heading">{{{content_title}}}</h4>
+                                            <div class="story-footer">
+                                                <small class="text-muted">{{content_date}}</small>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </a>
@@ -152,7 +164,12 @@ main: `
                                         {{/data.content_image_url}}
                                     </div>
                                     <div class="col-sm-8">
-                                        <h4 class="list-group-item-heading">{{{data.content_title}}}</h4>
+                                       <div class="content-wrapper">
+                                            <h4 class="list-group-item-heading">{{{data.content_title}}}</h4>
+                                            <div class="story-footer">
+                                                <small class="text-muted">{{data.content_date}}</small>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </a>

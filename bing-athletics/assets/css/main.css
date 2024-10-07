@@ -40,6 +40,17 @@
     background-color: #555; 
 }
 
+.gmail-link {
+    text-decoration: underline; 
+    margin-right: 20px; 
+    color: #207a62;
+    font-weight: bold; 
+}
+
+.gmail-link:hover {
+    color: #6CC24A;
+}
+
 
 .flex-container {
     display: flex;
@@ -202,6 +213,20 @@
     color: white; 
 }
 
+.composite_calendar {
+    display: flex;
+    flex-direction: column; 
+}
+
+.calendar-link {
+    margin-top: auto;
+    display: block;
+    text-align: left;
+    font-size: 14px;
+    text-decoration: underline;
+    color: gray;
+}
+
 .box-wrapper {
     display: flex;
     justify-content: center;
@@ -349,24 +374,37 @@
     object-fit: contain; 
 }
 
+
 .fixed-row .col-sm-8 {
     flex: 0 0 80%; 
     max-width: 80%; 
     padding-left: 10px; 
+    display: block;
+
+}
+
+.content-wrapper {
     display: flex;
-    align-items: center; 
-    overflow:hidden;
+    flex-direction: column; 
+}
+
+.story-footer {
+    margin-top: auto;
+    display: block;
+    text-align: right;
+    font-size: 12px;
+    color: gray;
 }
 
 .fixed-row h4 {
     font-size: 15px;
-    margin: 0; 
-    word-wrap: break-word; 
-    overflow-wrap: break-word; 
-    white-space: normal;
-    max-width: 100%; 
-    overflow:hidden;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Limit to 2 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
     text-overflow: ellipsis;
+    max-width: 100%;
 }
 
 @media (max-width: 768px) {
@@ -389,6 +427,12 @@
 .list-group-item-heading {
     font-size: 14px;
     margin-bottom: 10px;
+}
+
+.story-footer {
+    margin-top: 5px;
+    display: block;
+    text-align: right;
 }
 
 

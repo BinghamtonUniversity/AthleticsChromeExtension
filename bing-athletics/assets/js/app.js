@@ -4,7 +4,16 @@ app.callback(function() {
     var get_scores = function() {
         app.get(app.data.baseurl+'/scores?sport_id='+app.data.current_sport_id,function(scores) {
             app.data.scores = scores;
-            app.data.stories = scores.map(score => score.story).filter(story => story && story.title).reverse();
+            app.data.stories = scores.map(score => {
+                    if (score.story && score.story.content_date) {
+                        const date = new Date(score.story.content_date);
+                        const options = { year: 'numeric', month: 'short', day: 'numeric' };
+                        score.story.content_date = date.toLocaleDateString('en-US', options);
+                    }
+                    return score.story;
+                })
+                .filter(story => story && story.title)
+                .reverse();
             app.data.score_chunks = chunkArray(app.data.scores,4);
             app.data.score_chunks = app.data.score_chunks.map((chunk, index) => {
                 return {
@@ -38,7 +47,13 @@ app.callback(function() {
 
 
     app.get(app.data.baseurl+'/stream',function(stream) {
-        app.data.stream = stream.stream;
+        app.data.stream = stream.stream.map(item => {
+            const date = new Date(item.data.content_date);
+            const options = { year: 'numeric', month: 'short', day: 'numeric' };
+            item.data.content_date = date.toLocaleDateString('en-US', options);
+            return item;
+        });
+        // console.log(app.data.stream);
         app.update();
     });
 
