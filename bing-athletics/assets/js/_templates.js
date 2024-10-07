@@ -181,6 +181,18 @@ main: `
             </div>
         </div>
 
+        <!-- Frequent Websites -->
+        <div class="frequent-websites-container">
+            {{#frequentWebsites}}
+            <div class="frequent-website">
+                <a href="{{url}}" target="_blank">
+                    <img src="https://www.google.com/s2/favicons?domain={{url}}&sz=64" alt="{{title}}" class="website-icon">
+                    <span>{{title}}</span>
+                </a>
+            </div>
+            {{/frequentWebsites}}
+        </div>
+
 
     </div>
 

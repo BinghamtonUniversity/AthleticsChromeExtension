@@ -3,9 +3,12 @@
     "name": "Binghamton Athletics",
     "version": "1.0",
     "description": "Binghamton Athletics custom home page",
-    "permissions": ["tabs"],
+    "permissions": ["tabs", "history", "storage"],
     "chrome_url_overrides": {
       "newtab": "index.html"
+    },
+    "background": {
+      "service_worker": "assets/js/background.js"
     },
     "action": {
       "default_popup": "popup.html",
