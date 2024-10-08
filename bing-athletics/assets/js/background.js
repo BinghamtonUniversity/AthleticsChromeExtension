@@ -4,13 +4,15 @@
 
 
 chrome.storage.onChanged.addListener((changes, namespace) => {
+  // console.log(changes);
   for (let [key, { oldValue, newValue }] of Object.entries(changes)) {
       if (key === "frequentWebsites") {
-          chrome.storage.session.set({ frequentWebsites: newValue }).then(() => {
-            console.log("Frequent websites have changed.");
-          }).catch(error => {
-              console.error("Failed to save frequent website change:", error);
-          });
+          chrome.storage.session.set({ frequentWebsites: newValue })
+          // .then(() => {
+          //   console.log("Frequent websites have changed.");
+          // }).catch(error => {
+          //     console.error("Failed to save frequent website change:", error);
+          // });
       }
   }
 });
@@ -43,8 +45,8 @@ chrome.tabs.onCreated.addListener(function(tab) {
 
 
 function updateFrequentWebsites() {
-  chrome.history.search({ text: '', maxResults: 5 }, function (data) {
-      const visitedWebsites = data.sort((a, b) => b.visitCount - a.visitCount); // Sort by visit count
+  chrome.history.search({ text: '', maxResults: 100 }, function (data) {
+      const visitedWebsites = data.sort((a, b) => b.visitCount - a.visitCount).slice(0,5); // Sort by visit count
       // console.log(visitedWebsites);
       const frequentWebsites = visitedWebsites.map(page => ({
           url: page.url,
