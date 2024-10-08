@@ -4,7 +4,7 @@ main: `
 
     <div style="margin:40px 20px 0px 20px;position:relative;">
        <div style="position: absolute; top: 10px; right: 20px; display: flex; align-items: center;">
-            <a href="https://mail.google.com/mail/u/0/#inbox" target="_blank" class="gmail-link">Gmail</a>
+            <a href="http://bmail.binghamton.edu" target="_blank" class="gmail-link">Gmail</a>
 
             <span style="font-size: 13px; margin-right: 10px;">Dark Mode</span>
             <label class="switch">
