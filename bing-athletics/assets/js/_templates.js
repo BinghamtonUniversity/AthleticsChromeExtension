@@ -65,7 +65,7 @@ main: `
                                         </div>
                                         <!-- Sport Title and Team Score -->
                                         <span class="teams">
-                                            <img src="assets/icons/icon32.png" style="width:16px;">
+                                            <img src="assets/icons/bicon32.png" style="width:16px;">
                                             <strong>{{sport.title}}</strong>
                                             {{#result}}{{#team_score}}
                                             <strong>{{team_score}}</strong>
