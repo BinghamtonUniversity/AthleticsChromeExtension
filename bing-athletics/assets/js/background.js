@@ -1,18 +1,8 @@
-// chrome.runtime.onInstalled.addListener(() => {
-//   console.log("Binghamton Athletics extension installed.");
-// });
-
 
 chrome.storage.onChanged.addListener((changes, namespace) => {
-  // console.log(changes);
   for (let [key, { oldValue, newValue }] of Object.entries(changes)) {
       if (key === "frequentWebsites") {
-          chrome.storage.session.set({ frequentWebsites: newValue })
-          // .then(() => {
-          //   console.log("Frequent websites have changed.");
-          // }).catch(error => {
-          //     console.error("Failed to save frequent website change:", error);
-          // });
+          chrome.storage.session.set({ frequentWebsites: newValue });
       }
   }
 });
@@ -32,11 +22,6 @@ chrome.tabs.onCreated.addListener(function(tab) {
 
       // Update frequent websites in session storage
       chrome.storage.session.set({ frequentWebsites: currentFrequentWebsites })
-      // .then(() => {
-      //   console.log("Frequent websites updated in session storage.");
-      // }).catch(error => {
-      //   console.error("Failed to update frequent websites:", error);
-      // });
     });
   }).catch(error => {
     console.error("Failed to get frequent websites:", error);
@@ -46,19 +31,13 @@ chrome.tabs.onCreated.addListener(function(tab) {
 
 function updateFrequentWebsites() {
   chrome.history.search({ text: '', maxResults: 100 }, function (data) {
-      const visitedWebsites = data.sort((a, b) => b.visitCount - a.visitCount).slice(0,5); // Sort by visit count
-      // console.log(visitedWebsites);
+      const visitedWebsites = data.sort((a, b) => b.visitCount - a.visitCount).slice(0,5);
       const frequentWebsites = visitedWebsites.map(page => ({
           url: page.url,
           title: page.title
       }));
 
-      chrome.storage.session.set({ "frequentWebsites": frequentWebsites })
-      // .then(() => {
-      //     console.log("Frequent websites are saved.");
-      // }).catch(error => {
-      //     console.error("Failed to save frequent websites:", error);
-      // });
+      chrome.storage.session.set({ "frequentWebsites": frequentWebsites });
   });
 }
 
