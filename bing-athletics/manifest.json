@@ -11,7 +11,6 @@
       "service_worker": "assets/js/background.js"
     },
     "action": {
-      "default_popup": "popup.html",
       "default_icon": {
         "16": "assets/icons/bicon16.png",
         "48": "assets/icons/bicon48.png",

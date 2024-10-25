@@ -6,7 +6,7 @@ main: `
        <div style="position: absolute; top: 10px; right: 20px; display: flex; align-items: center;">
             <a href="http://bmail.binghamton.edu" target="_blank" class="gmail-link">Gmail</a>
 
-            <span style="font-size: 13px; margin-right: 10px;">Dark Mode</span>
+            <span class="dark-mode-text">Dark Mode</span>
             <label class="switch">
                 <input type="checkbox" id="dark-mode-toggle">
                 <span class="slider round"></span>
