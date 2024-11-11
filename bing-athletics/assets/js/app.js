@@ -105,22 +105,22 @@ app.callback(function() {
         }
     });
     
-    chrome.tabs.onUpdated.addListener(function (tabId, info, tab) {
-        if (info.status === 'complete' && tab.url === "chrome://newtab/") {
-            // Update frequent websites when a new tab is opened
-            chrome.storage.session.get('frequentWebsites').then(result => {
-                app.data.frequentWebsites = result.frequentWebsites
-                app.update();
-            }).catch(error => {
-                console.error("Failed to get frequent websites:", error);
-            });
-        }
-    });
-
+    // chrome.tabs.onUpdated.addListener(function (tabId, info, tab) {
+    //     if (info.status === 'complete' && tab.url === "chrome://newtab/") {
+    //         // Update frequent websites when a new tab is opened
+    //         chrome.storage.session.get('frequentWebsites').then(result => {
+    //             app.data.frequentWebsites = result.frequentWebsites
+    //             console.log("Frequent websites updated:", app.data.frequentWebsites);
+    //             app.update();
+    //         }).catch(error => {
+    //             console.error("Failed to get frequent websites:", error);
+    //         });
+    //     }
+    // });
 
     // initial call to set the frequent websites
     chrome.storage.session.get('frequentWebsites').then(result => {
-        app.data.frequentWebsites = result.frequentWebsites
+        app.data.frequentWebsites = result.frequentWebsites || [];
         app.update();
     }).catch(error => {
         console.error("Failed to get frequent websites:", error);

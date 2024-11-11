@@ -506,14 +506,14 @@ input:checked + .slider:before {
     justify-content: space-evenly;
     align-items: center;
     padding: 20px;
-    background-color: #f9f9f9;
+    /* background-color: #f9f9f9;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
     width: 80%;
     margin: auto;
     max-height: 100px;
     margin-bottom: 40px;
-    border: 1px solid #ddd; 
+    /* border: 1px solid #ddd;  */
 
 }
 
@@ -523,15 +523,16 @@ input:checked + .slider:before {
     align-items: center;
     text-align: center;
     margin: 0 10px;
-    
 }
 
 .website-icon {
-    width: 32px; 
-    height: 32px;
+    width: 40px; 
+    height: 40px;
     object-fit: contain;
     margin-right: 10px; 
-    border-radius: 4px; 
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    padding: 5px;
 }
 
 .frequent-website span {
@@ -545,11 +546,10 @@ input:checked + .slider:before {
     overflow: hidden;
 }
 
-.dark-mode .frequent-websites-container {
-    background-color: #222; 
-    color: #fff;
-    box-shadow: none; 
-    border: 1px solid #555; 
+.dark-mode .website-icon {
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1); 
+    border: none; 
+
 }
 
 .dark-mode .frequent-website span {
