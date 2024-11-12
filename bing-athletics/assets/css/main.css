@@ -556,6 +556,148 @@ input:checked + .slider:before {
     color: #ccc; 
 }
 
+/* Form Modal */
+
+/* Modal Background */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #ffffff;
+    margin: 10% auto;
+    padding: 40px 20px;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.modal-content h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Form Styling */
+#shortcut-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#shortcut-form label {
+    font-size: 14px;
+    color: #333;
+    text-align: left;
+    margin-bottom: 5px;
+}
+
+#shortcut-form input[type="text"],
+#shortcut-form input[type="url"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    color:#000;
+    border-radius: 10px;
+    background-color: #eee; 
+    outline: none;
+    font-size: 16px;
+}
+
+#shortcut-form input[type="text"]:focus,
+#shortcut-form input[type="url"]:focus {
+    border-color:#999; 
+}
+
+/* Buttons Styling */
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.cancel-button,
+.submit-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 20px;
+    border: 1px solid #999; 
+    cursor: pointer;
+    width: 100px;
+}
+
+.cancel-button {
+    background-color: transparent;
+    color: #999;
+}
+
+.submit-button {
+    background-color: #999;
+    color: #ffffff;
+    border: none;
+    opacity: 0.6;
+}
+
+.submit-button:disabled {
+    cursor: not-allowed;
+}
+
+.submit-button:enabled {
+    opacity: 1;
+}
+
+.dark-mode .modal {
+    background-color: rgba(0, 0, 0, 0.7); 
+}
+
+.dark-mode .modal-content {
+    background-color: #333; 
+    border: 1px solid #555; 
+    color: #fff; 
+}
+
+.dark-mode .modal-content h2 {
+    color: #fff; 
+}
+
+.dark-mode #shortcut-form label {
+    color: #ccc; 
+}
+
+.dark-mode #shortcut-form input[type="text"],
+.dark-mode #shortcut-form input[type="url"] {
+    background-color: #444; 
+    color: #fff; 
+    border-color: #666; 
+}
+
+.dark-mode .cancel-button {
+    color: #ccc; 
+    background-color: transparent; 
+}
+
+.dark-mode .submit-button {
+    background-color: #555; 
+    color: #fff; 
+}
+
+.dark-mode .modal-buttons {
+    border-color: #444; 
+}
+
+
+
 @media (max-width: 768px) {
     .frequent-websites-container {
         padding: 15px;

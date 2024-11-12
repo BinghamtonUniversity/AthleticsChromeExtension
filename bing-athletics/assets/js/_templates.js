@@ -25,7 +25,6 @@ main: `
         
 
         <div class='flex-container'>
-        <!--<div id="sports_form"></div>-->
 
         <div class="container my-carousel-container" style="margin: 30px auto;">
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -189,6 +188,36 @@ main: `
                 </a>
             </div>
             {{/frequentWebsites}}
+            {{#shortcuts}}
+                <div class="frequent-website">
+                    <img src="https://www.google.com/s2/favicons?domain={{url}}&sz=64" alt="{{title}}" class="website-icon">
+                    <span>{{title}}</span>
+                </div>
+            {{/shortcuts}}
+            {{#addShortcuts}}
+                <div class="frequent-website add-shortcut">
+                    <div id="shortcut-modal" class="modal">
+                        <div class="modal-content">
+                            <h2>Add Shortcut</h2>
+                            <form id="shortcut-form">
+                                <label for="shortcut-url">URL:</label>
+                                <input type="url" id="shortcut-url" required>
+                                
+                                <label for="shortcut-name">Name:</label>
+                                <input type="text" id="shortcut-name" required>
+                                
+                                <div class="modal-buttons">
+                                    <button type="button" class="cancel-button">Cancel</button>
+                                    <button type="submit" class="submit-button">Done</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <img src="assets/icons/plus_grey.png" alt="Add Shortcut" class="website-icon">
+                    <span>Add Shortcut</span>
+                </div>
+            {{/addShortcuts}}
         </div>
 
 

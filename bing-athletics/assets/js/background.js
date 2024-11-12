@@ -18,8 +18,8 @@ chrome.tabs.onCreated.addListener(function(tab) {
       chrome.storage.session.get('frequentWebsites').then(result => {
         let currentFrequentWebsites = result.frequentWebsites || [];
 
-        chrome.history.search({ text: '', maxResults: 100 }, function(data) {
-          let visitedWebsites = data.sort((a, b) => b.visitCount - a.visitCount).slice(0,5);
+        chrome.history.search({ text: '', maxResults: 20 }, function(data) {
+          let visitedWebsites = data.sort((a, b) => b.visitCount - a.visitCount).slice(0,3);
           const newFrequentWebsites = visitedWebsites.map(page => ({
             url: page.url,
             title: page.title
@@ -40,36 +40,9 @@ chrome.tabs.onCreated.addListener(function(tab) {
   });
 });
 
-// setTimeout(() => {
-//   chrome.storage.session.set({ frequentWebsitesUpdated: false });
-// }, 600);
-
-// chrome.tabs.onCreated.addListener(function(tab) {
-//   chrome.storage.session.get('frequentWebsites').then(result => {
-//     let currentFrequentWebsites = result.frequentWebsites || [];
-
-//     chrome.history.search({ text: '', maxResults: 20 }, function(data) {
-//       console.log(data);
-//       let visitedWebsites = data.sort((a, b) => b.visitCount - a.visitCount).slice(0,5);
-//       const newFrequentWebsites = visitedWebsites.map(page => ({
-//         url: page.url,
-//         title: page.title
-//       }));
-//       currentFrequentWebsites = newFrequentWebsites;
-
-//       // Update frequent websites in session storage
-//       chrome.storage.session.set({ frequentWebsites: currentFrequentWebsites })
-//       console.log("Frequent websites updated:", currentFrequentWebsites);
-//     });
-//   }).catch(error => {
-//     console.error("Failed to get frequent websites:", error);
-//   });
-// });
-
-
 function updateFrequentWebsites() {
-  chrome.history.search({ text: '', maxResults: 100 }, function (data) {
-      const visitedWebsites = data.sort((a, b) => b.visitCount - a.visitCount).slice(0,5);
+  chrome.history.search({ text: '', maxResults: 20 }, function (data) {
+      const visitedWebsites = data.sort((a, b) => b.visitCount - a.visitCount).slice(0,3);
       const frequentWebsites = visitedWebsites.map(page => ({
           url: page.url,
           title: page.title

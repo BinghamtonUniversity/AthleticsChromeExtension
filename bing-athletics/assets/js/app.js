@@ -104,23 +104,59 @@ app.callback(function() {
             });
         }
     });
-    
-    // chrome.tabs.onUpdated.addListener(function (tabId, info, tab) {
-    //     if (info.status === 'complete' && tab.url === "chrome://newtab/") {
-    //         // Update frequent websites when a new tab is opened
-    //         chrome.storage.session.get('frequentWebsites').then(result => {
-    //             app.data.frequentWebsites = result.frequentWebsites
-    //             console.log("Frequent websites updated:", app.data.frequentWebsites);
-    //             app.update();
-    //         }).catch(error => {
-    //             console.error("Failed to get frequent websites:", error);
-    //         });
-    //     }
-    // });
 
+
+    app.click('.frequent-website.add-shortcut', function(event) {
+        const modal = document.getElementById('shortcut-modal');
+        const shortcutForm = document.getElementById('shortcut-form');
+        const urlInput = document.getElementById('shortcut-url');
+        const nameInput = document.getElementById('shortcut-name');
+    
+        // Open the modal
+        modal.style.display = 'block';
+    
+        // Close modal on clicking outside the modal
+        window.onclick = function (event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+                shortcutForm.reset();
+            }
+        };
+
+        app.click('.submit-button', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            const url = urlInput.value.trim();
+            const name = nameInput.value.trim();
+            if (url && name) {
+                const newShortcut = { url, name };
+                app.data.shortcuts.push(newShortcut);
+                localStorage.setItem('shortcuts', JSON.stringify(app.data.shortcuts));
+                app.update();
+                if (app.data.frequentWebsites.length + app.data.shortcuts.length >= 5) {
+                    app.data.addShortcuts = null;
+                }
+            }
+    
+            // Close and reset modal
+            modal.style.display = 'none';
+            shortcutForm.reset();
+        });
+
+        app.click('.cancel-button', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            modal.style.display = 'none';
+            shortcutForm.reset();
+        });
+    });
+    
     // initial call to set the frequent websites
     chrome.storage.session.get('frequentWebsites').then(result => {
         app.data.frequentWebsites = result.frequentWebsites || [];
+        const savedShortcuts = JSON.parse(localStorage.getItem('shortcuts')) || [];
+        app.data.shortcuts = savedShortcuts;
+        (app.data.frequentWebsites.length + app.data.shortcuts.length >= 5)? app.data.addShortcuts = null : app.data.addShortcuts = Array(1).fill({});
         app.update();
     }).catch(error => {
         console.error("Failed to get frequent websites:", error);
