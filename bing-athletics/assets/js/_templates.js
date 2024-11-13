@@ -190,12 +190,45 @@ main: `
             {{/frequentWebsites}}
             {{#shortcuts}}
                 <div class="frequent-website">
-                    <img src="https://www.google.com/s2/favicons?domain={{url}}&sz=64" alt="{{title}}" class="website-icon">
-                    <span>{{title}}</span>
+                    <!-- Edit Shortcut Modal -->
+                    <div id="shortcut-edit-modal" class="modal">
+                        <div class="modal-content">
+                            <h2>Edit Shortcut</h2>
+                            <form id="shortcut-edit-form">
+                                <label for="shortcut-edit-url">URL:</label>
+                                <input type="url" id="shortcut-edit-url" required>
+                                
+                                <label for="shortcut-edit-name">Name:</label>
+                                <input type="text" id="shortcut-edit-name" required>
+                                
+                                <div class="edit-modal-buttons">
+                                    <button type="button" class="edit-cancel-button">Cancel</button>
+                                    <button type="submit" class="edit-button">Done</button>
+                                </div>
+                            </form>
+                            <div id="url-edit-error-message" style="color: red; display: none; padding:5px;">Please enter a valid URL starting with http:// or https://.</div>
+                        </div>
+                    </div>
+
+                    <!-- Three dots menu button -->
+                    <div class="menu-container">
+                        <button class="menu-button">⋮</button>
+                        <div class="menu-options">
+                            <button class="edit-option">Edit</button>
+                            <button class="remove-option">Remove</button>
+                        </div>
+                    </div>
+                    <a href="{{url}}" target="_blank">
+                        <div class="website-info">
+                            <img src="https://www.google.com/s2/favicons?domain={{url}}&sz=64" alt="{{name}}" class="website-icon">
+                            <span>{{name}}</span>
+                        </div>    
+                    </a> 
                 </div>
             {{/shortcuts}}
             {{#addShortcuts}}
                 <div class="frequent-website add-shortcut">
+                    <!-- Add Shortcut Modal -->
                     <div id="shortcut-modal" class="modal">
                         <div class="modal-content">
                             <h2>Add Shortcut</h2>
@@ -211,6 +244,7 @@ main: `
                                     <button type="submit" class="submit-button">Done</button>
                                 </div>
                             </form>
+                            <div id="url-add-error-message" style="color: red; display: none; padding:5px;">Please enter a valid URL starting with http:// or https://.</div>
                         </div>
                     </div>
 

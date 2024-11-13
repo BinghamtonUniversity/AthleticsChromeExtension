@@ -52,7 +52,6 @@ app.callback(function() {
             item.data.content_date = date.toLocaleDateString('en-US', options);
             return item;
         });
-        // console.log(app.data.stream);
         app.update();
     });
 
@@ -111,6 +110,7 @@ app.callback(function() {
         const shortcutForm = document.getElementById('shortcut-form');
         const urlInput = document.getElementById('shortcut-url');
         const nameInput = document.getElementById('shortcut-name');
+        const errorMessage = document.getElementById('url-add-error-message');
     
         // Open the modal
         modal.style.display = 'block';
@@ -126,9 +126,18 @@ app.callback(function() {
         app.click('.submit-button', function(e) {
             e.preventDefault();
             e.stopPropagation();
-            const url = urlInput.value.trim();
+            let url = urlInput.value.trim();
             const name = nameInput.value.trim();
+            errorMessage.style.display = 'none';
+
             if (url && name) {
+                try {
+                    url = new URL(url); 
+                } catch (error) {
+                    errorMessage.style.display = 'block'; // Show error message
+                    return;
+                }
+                url = url.href;
                 const newShortcut = { url, name };
                 app.data.shortcuts.push(newShortcut);
                 localStorage.setItem('shortcuts', JSON.stringify(app.data.shortcuts));
@@ -140,10 +149,85 @@ app.callback(function() {
     
             // Close and reset modal
             modal.style.display = 'none';
+            errorMessage.style.display = 'none';
             shortcutForm.reset();
         });
 
         app.click('.cancel-button', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            modal.style.display = 'none';
+            shortcutForm.reset();
+        });
+    });
+
+    // Three dots menu options
+    app.click('.remove-option', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const shortcutElement = e.target.closest('.frequent-website');
+        const anchor = shortcutElement.querySelector('a');
+        const targetUrl = anchor ? anchor.getAttribute('href') : null;
+        if (targetUrl) {
+            app.data.shortcuts = app.data.shortcuts.filter(shortcut => {
+                return shortcut.url !== targetUrl;
+            });
+            localStorage.setItem('shortcuts', JSON.stringify(app.data.shortcuts));
+            if (app.data.frequentWebsites.length + app.data.shortcuts.length < 5) {
+                app.data.addShortcuts = Array(1).fill({});;
+            }
+            app.update();
+        }
+    });
+
+    app.click('.edit-option', function(e) { 
+        const shortcutForm = document.getElementById('shortcut-edit-form');
+        const modal = document.getElementById('shortcut-edit-modal');
+        const urlInput = document.getElementById('shortcut-edit-url');
+        const nameInput = document.getElementById('shortcut-edit-name');
+        const errorMessage = document.getElementById('url-edit-error-message');
+        const shortcutElement = e.target.closest('.frequent-website');
+        const anchor = shortcutElement.querySelector('a');
+        const targetUrl = anchor ? anchor.getAttribute('href') : null;
+        errorMessage.style.display = 'none';
+        if (targetUrl) {
+            const shortcutToEdit = app.data.shortcuts.find(shortcut => {
+                return shortcut.url === targetUrl;
+            });
+            if (shortcutToEdit) {
+                // Pre-fill the form fields with existing data
+                urlInput.value = shortcutToEdit.url;
+                nameInput.value = shortcutToEdit.name;
+                
+                modal.style.display = 'block';
+               
+                app.click('.edit-button', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    // Update the shortcut with new values from the form
+                    let updatedUrl = urlInput.value.trim();
+                    const updatedName = nameInput.value.trim();
+                    
+                    if (updatedUrl && updatedName) {
+                        try {
+                            updatedUrl = new URL(updatedUrl); 
+                        } catch (error) {
+                            errorMessage.style.display = 'block'; 
+                            return;
+                        }
+                        shortcutToEdit.url = updatedUrl.href;
+                        shortcutToEdit.name = updatedName;
+                        // Save updated shortcuts array to localStorage
+                        localStorage.setItem('shortcuts', JSON.stringify(app.data.shortcuts));
+                        app.update();
+                        modal.style.display = 'none';
+                        shortcutForm.reset();
+                    }
+                });
+            }
+        }
+        app.click('.edit-cancel-button', function(e) {
             e.preventDefault();
             e.stopPropagation();
             modal.style.display = 'none';
