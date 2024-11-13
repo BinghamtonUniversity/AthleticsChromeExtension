@@ -111,6 +111,8 @@ app.callback(function() {
         const urlInput = document.getElementById('shortcut-url');
         const nameInput = document.getElementById('shortcut-name');
         const errorMessage = document.getElementById('url-add-error-message');
+        const duplicateErrorMessage = document.getElementById('url-add-duplicate-message');
+
     
         // Open the modal
         modal.style.display = 'block';
@@ -120,6 +122,8 @@ app.callback(function() {
             if (event.target === modal) {
                 modal.style.display = 'none';
                 shortcutForm.reset();
+                errorMessage.style.display = 'none';
+                duplicateErrorMessage.style.display = 'none';
             }
         };
 
@@ -129,6 +133,7 @@ app.callback(function() {
             let url = urlInput.value.trim();
             const name = nameInput.value.trim();
             errorMessage.style.display = 'none';
+            duplicateErrorMessage.style.display = 'none';
 
             if (url && name) {
                 try {
@@ -138,6 +143,13 @@ app.callback(function() {
                     return;
                 }
                 url = url.href;
+                const isDuplicate = app.data.shortcuts.some(shortcut => shortcut.url === url);
+                if (isDuplicate) {
+                    // Show duplicate error message if the URL already exists
+                    duplicateErrorMessage.style.display = 'block';
+                    return;
+                }
+
                 const newShortcut = { url, name };
                 app.data.shortcuts.push(newShortcut);
                 localStorage.setItem('shortcuts', JSON.stringify(app.data.shortcuts));
@@ -158,6 +170,8 @@ app.callback(function() {
             e.stopPropagation();
             modal.style.display = 'none';
             shortcutForm.reset();
+            errorMessage.style.display = 'none';
+            duplicateErrorMessage.style.display = 'none';
         });
     });
 
@@ -187,10 +201,15 @@ app.callback(function() {
         const urlInput = document.getElementById('shortcut-edit-url');
         const nameInput = document.getElementById('shortcut-edit-name');
         const errorMessage = document.getElementById('url-edit-error-message');
+        const duplicateErrorMessage = document.getElementById('url-edit-duplicate-message');
         const shortcutElement = e.target.closest('.frequent-website');
         const anchor = shortcutElement.querySelector('a');
         const targetUrl = anchor ? anchor.getAttribute('href') : null;
+
+
         errorMessage.style.display = 'none';
+        duplicateErrorMessage.style.display = 'none';
+
         if (targetUrl) {
             const shortcutToEdit = app.data.shortcuts.find(shortcut => {
                 return shortcut.url === targetUrl;
@@ -216,6 +235,12 @@ app.callback(function() {
                             errorMessage.style.display = 'block'; 
                             return;
                         }
+                        //Check for duplicates
+                        const isDuplicate = app.data.shortcuts.some(shortcut => shortcut.url === updatedUrl.href);
+                        if (isDuplicate) {
+                            duplicateErrorMessage.style.display = 'block';
+                            return;
+                        }
                         shortcutToEdit.url = updatedUrl.href;
                         shortcutToEdit.name = updatedName;
                         // Save updated shortcuts array to localStorage
@@ -232,6 +257,8 @@ app.callback(function() {
             e.stopPropagation();
             modal.style.display = 'none';
             shortcutForm.reset();
+            errorMessage.style.display = 'none';
+            duplicateErrorMessage.style.display = 'none';
         });
     });
     

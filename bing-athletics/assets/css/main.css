@@ -25,6 +25,7 @@
     cursor: pointer;
     font-size: 14px;
     color: #000; 
+    margin-bottom: 50px;
 }
 
 .dark-mode #search-button {
@@ -57,10 +58,11 @@
     align-items: center; 
     padding: 20px;
     height: 200px;
+    margin-top: -30px;
 }
 
 .my-carousel-container2 {
-    margin-top: 10px;  
+    /* margin-top: 10px;   */
     margin-bottom: 2px;
     text-align: left; 
 }
@@ -867,7 +869,7 @@ input:checked + .slider:before {
 
     .frequent-website {
         flex-direction: row; 
-        margin: 10px 0; 
+        margin: 8px 0; 
     }
 
     .website-icon {
@@ -878,7 +880,13 @@ input:checked + .slider:before {
 
     .frequent-website span {
         font-size: 10px; 
-        max-width: 80px; 
+        max-width: 60px; 
+    }
+    .menu-container{
+        display: none !important;
+    }
+    .menu-button{
+        display: none !important;
     }
 }
 
