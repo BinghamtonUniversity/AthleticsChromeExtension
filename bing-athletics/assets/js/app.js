@@ -244,6 +244,7 @@ app.callback(function() {
                             duplicateErrorMessage.style.display = 'block';
                             return;
                         }
+                        // console.log(updatedName);
                         shortcutToEdit.url = updatedUrl.href;
                         shortcutToEdit.name = updatedName;
                         // Save updated shortcuts array to localStorage

@@ -253,10 +253,23 @@
 
 @media (max-width: 768px) {
     .box-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         flex-direction: column; 
         padding: 10px;
         width: 100%;
     }
+
+    .dark-mode .box-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column; 
+        padding: 10px;
+        width: 100%;
+    }
+
 
     .scrollable-container {
         height: auto;
@@ -881,8 +894,8 @@ input:checked + .slider:before {
     }
 
     .website-icon {
-        width: 24px; 
-        height: 24px;
+        width: 35px; 
+        height: 35px;
         margin-right: 8px;
     }
 
