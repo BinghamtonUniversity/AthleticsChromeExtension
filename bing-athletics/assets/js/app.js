@@ -1,4 +1,5 @@
 app.callback(function() {
+    app.data.max_frequent_websites = 8;
     app.data.baseurl = 'https://hermesprod.binghamton.edu/athleticsplugin';
     app.data.current_sport_id = 0;
     var get_scores = function() {
@@ -139,7 +140,7 @@ app.callback(function() {
                 try {
                     url = new URL(url); 
                 } catch (error) {
-                    errorMessage.style.display = 'block'; // Show error message
+                    errorMessage.style.display = 'block'; 
                     return;
                 }
                 url = url.href;
@@ -153,15 +154,17 @@ app.callback(function() {
                 const newShortcut = { url, name };
                 app.data.shortcuts.push(newShortcut);
                 localStorage.setItem('shortcuts', JSON.stringify(app.data.shortcuts));
-                app.update();
-                if (app.data.frequentWebsites.length + app.data.shortcuts.length >= 5) {
+
+                if (app.data.frequentWebsites.length + app.data.shortcuts.length >= app.data.max_frequent_websites) {
                     app.data.addShortcuts = null;
                 }
+                app.update();
             }
     
             // Close and reset modal
             modal.style.display = 'none';
             errorMessage.style.display = 'none';
+            duplicateErrorMessage.style.display = 'none';
             shortcutForm.reset();
         });
 
@@ -188,7 +191,7 @@ app.callback(function() {
                 return shortcut.url !== targetUrl;
             });
             localStorage.setItem('shortcuts', JSON.stringify(app.data.shortcuts));
-            if (app.data.frequentWebsites.length + app.data.shortcuts.length < 5) {
+            if (app.data.frequentWebsites.length + app.data.shortcuts.length < app.data.max_frequent_websites) {
                 app.data.addShortcuts = Array(1).fill({});;
             }
             app.update();
@@ -235,8 +238,8 @@ app.callback(function() {
                             errorMessage.style.display = 'block'; 
                             return;
                         }
-                        //Check for duplicates
-                        const isDuplicate = app.data.shortcuts.some(shortcut => shortcut.url === updatedUrl.href);
+                        // Check for duplicates
+                        const isDuplicate = app.data.shortcuts.some(shortcut => shortcut.url === updatedUrl.href && updatedUrl.href !== shortcutToEdit.url); ;
                         if (isDuplicate) {
                             duplicateErrorMessage.style.display = 'block';
                             return;
@@ -246,9 +249,14 @@ app.callback(function() {
                         // Save updated shortcuts array to localStorage
                         localStorage.setItem('shortcuts', JSON.stringify(app.data.shortcuts));
                         app.update();
-                        modal.style.display = 'none';
-                        shortcutForm.reset();
+
+                        
                     }
+                    modal.style.display = 'none';
+                    errorMessage.style.display = 'none';
+                    duplicateErrorMessage.style.display = 'none';
+                    shortcutForm.reset();
+
                 });
             }
         }
@@ -267,7 +275,7 @@ app.callback(function() {
         app.data.frequentWebsites = result.frequentWebsites || [];
         const savedShortcuts = JSON.parse(localStorage.getItem('shortcuts')) || [];
         app.data.shortcuts = savedShortcuts;
-        (app.data.frequentWebsites.length + app.data.shortcuts.length >= 5)? app.data.addShortcuts = null : app.data.addShortcuts = Array(1).fill({});
+        (app.data.frequentWebsites.length + app.data.shortcuts.length >= app.data.max_frequent_websites)? app.data.addShortcuts = null : app.data.addShortcuts = Array(1).fill({});
         app.update();
     }).catch(error => {
         console.error("Failed to get frequent websites:", error);

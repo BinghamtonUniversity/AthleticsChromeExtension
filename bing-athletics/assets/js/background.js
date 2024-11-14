@@ -6,7 +6,6 @@ chrome.storage.onChanged.addListener((changes, namespace) => {
   for (let [key, { oldValue, newValue }] of Object.entries(changes)) {
       if (key === "frequentWebsites") {
           chrome.storage.session.set({ frequentWebsites: newValue });
-          // console.log("Storage updated");
       }
   }
 });
@@ -28,8 +27,6 @@ chrome.tabs.onCreated.addListener(function(tab) {
 
           // Update frequent websites in session storage
           chrome.storage.session.set({ frequentWebsites: currentFrequentWebsites })
-          // console.log("Frequent websites updated:", currentFrequentWebsites);
-
           // Set the flag so it doesn't update again
           chrome.storage.session.set({ frequentWebsitesUpdated: true });
         });

@@ -559,6 +559,14 @@ input:checked + .slider:before {
     top: 0px;
     right: 5px;
 }
+@media (max-width: 1047px){
+    .menu-container{
+        display: none;
+    }
+    .menu-button{
+        display: none;
+    }
+}
 
 .menu-button {
     background: none;
