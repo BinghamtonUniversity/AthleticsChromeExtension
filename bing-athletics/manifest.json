@@ -1,9 +1,9 @@
 {
     "manifest_version": 3,
     "name": "Binghamton Athletics",
-    "version": "1.1",
+    "version": "1.2",
     "description": "Binghamton Athletics custom home page",
-    "permissions": ["tabs", "history", "storage"],
+    "permissions": ["tabs", "history"],
     "chrome_url_overrides": {
       "newtab": "index.html"
     },

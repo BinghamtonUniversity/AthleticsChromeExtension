@@ -114,8 +114,6 @@ app.callback(function() {
         const errorMessage = document.getElementById('url-add-error-message');
         const duplicateErrorMessage = document.getElementById('url-add-duplicate-message');
 
-    
-        // Open the modal
         modal.style.display = 'block';
     
         // Close modal on clicking outside the modal
@@ -154,6 +152,9 @@ app.callback(function() {
                 const newShortcut = { url, name };
                 app.data.shortcuts.push(newShortcut);
                 localStorage.setItem('shortcuts', JSON.stringify(app.data.shortcuts));
+                // chrome.storage.local.set({ shortcuts: app.data.shortcuts }, () => {
+                //     console.log('Shortcuts saved to chrome.storage');
+                // });
 
                 if (app.data.frequentWebsites.length + app.data.shortcuts.length >= app.data.max_frequent_websites) {
                     app.data.addShortcuts = null;
@@ -191,6 +192,9 @@ app.callback(function() {
                 return shortcut.url !== targetUrl;
             });
             localStorage.setItem('shortcuts', JSON.stringify(app.data.shortcuts));
+            // chrome.storage.local.set({ shortcuts: app.data.shortcuts }, () => {
+            //     console.log('Removed Shortcuts saved to chrome.storage');
+            // });
             if (app.data.frequentWebsites.length + app.data.shortcuts.length < app.data.max_frequent_websites) {
                 app.data.addShortcuts = Array(1).fill({});;
             }
@@ -244,11 +248,12 @@ app.callback(function() {
                             duplicateErrorMessage.style.display = 'block';
                             return;
                         }
-                        // console.log(updatedName);
                         shortcutToEdit.url = updatedUrl.href;
                         shortcutToEdit.name = updatedName;
-                        // Save updated shortcuts array to localStorage
                         localStorage.setItem('shortcuts', JSON.stringify(app.data.shortcuts));
+                        // chrome.storage.local.set({ shortcuts: app.data.shortcuts }, () => {
+                        //     console.log('Edited Shortcuts saved to chrome.storage');
+                        // });
                         app.update();
 
                         
@@ -270,17 +275,25 @@ app.callback(function() {
             duplicateErrorMessage.style.display = 'none';
         });
     });
-    
-    // initial call to set the frequent websites
-    chrome.storage.session.get('frequentWebsites').then(result => {
-        app.data.frequentWebsites = result.frequentWebsites || [];
+
+    // Frequent websites 
+    chrome.history.search({ text: '', maxResults: 20 }, function (data) {
+        const visitedWebsites = data.sort((a, b) => b.visitCount - a.visitCount).slice(0,3);
+        app.data.frequentWebsites = visitedWebsites.map(page => ({
+            url: page.url,
+            title: page.title
+        })) || [];
         const savedShortcuts = JSON.parse(localStorage.getItem('shortcuts')) || [];
         app.data.shortcuts = savedShortcuts;
         (app.data.frequentWebsites.length + app.data.shortcuts.length >= app.data.max_frequent_websites)? app.data.addShortcuts = null : app.data.addShortcuts = Array(1).fill({});
         app.update();
-    }).catch(error => {
-        console.error("Failed to get frequent websites:", error);
+
+        // chrome.storage.local.get('shortcuts', (result) => {
+        //     app.data.shortcuts = result.shortcuts || [];
+        //     console.log(app.data.shortcuts);
+        //     (app.data.frequentWebsites.length + app.data.shortcuts.length >= app.data.max_frequent_websites)? app.data.addShortcuts = null : app.data.addShortcuts = Array(1).fill({});
+        //     // app.update();
+        // });
     });
-   
 });
 
