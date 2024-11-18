@@ -101,6 +101,7 @@ main: `
             {{/addShortcuts}}
         </div>
 
+
         <div class='flex-container'>
 
         <div class="container my-carousel-container" style="margin: 30px auto;">
@@ -253,8 +254,7 @@ main: `
             </div>
         </div>
 
-        
-
+    
     </div>
 
 `,
